@@ -2,7 +2,8 @@ Properties {
 	$base_dir = resolve-path .\..\..\
 	$packages_dir = "$base_dir\packages"
 	$build_artifacts_dir = "$base_dir\build"
-	$solution_name = "$base_dir\WebApiContrib.sln"
+	$solution_name = "$base_dir\WebApiContrib.Formatting.RazorViewEngine.sln"
+	$test_dll = "$build_artifacts_dir\WebApiContrib.Formatting.RazorViewEngine.Tests.dll"
 	$nunit_runner = "$packages_dir\NUnit.Runners.2.6.0.12051\tools"
 	$nunit_build_destination = "$build_artifacts_dir\tools\nunit"
 	$nunitConsole = "$nunit_build_destination\nunit-console.exe"
@@ -36,7 +37,7 @@ Task PrepareForTest {
 Task RunUnitTests -depends PrepareForTest, Build {
 	$test_result = "$build_artifacts_dir\UnitTestsResult.xml"
 	
-	& "$nunitConsole" "$build_artifacts_dir\WebApiContribTests.dll" /nologo /nodots "/xml=$test_result"
+	& "$nunitConsole" "$test_dll" /nologo /nodots "/xml=$test_result"
 	
 	if ($lastexitcode -gt 0)
 	{
