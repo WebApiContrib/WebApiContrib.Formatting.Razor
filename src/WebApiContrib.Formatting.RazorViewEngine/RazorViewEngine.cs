@@ -2,7 +2,6 @@
 using System.Collections.ObjectModel;
 using System.IO;
 using System.Net.Http.Headers;
-using RazorEngine;
 using RazorEngine.Configuration;
 using RazorEngine.Templating;
 
@@ -10,42 +9,57 @@ namespace WebApiContrib.Formatting.RazorViewEngine
 {
     public class RazorViewEngine  : IViewEngine
     {
+		private readonly ITemplateService _templateService;
 
-        public RazorViewEngine(Type rootLocatorType) 
-        {
-            var config = new TemplateServiceConfiguration();
-            config.Resolver = new EmbeddedResolver(rootLocatorType);
+		public RazorViewEngine(ITemplateService templateService)
+		{
+			if (templateService == null)
+				throw new ArgumentNullException("templateService");
 
-            var templateService = new TemplateService(config);
-
-            Razor.SetTemplateService(templateService);
-        }
+			_templateService = templateService;
+		}
 
         public RazorViewEngine()
         {
-            var config = new TemplateServiceConfiguration();
-
-            var templateService = new TemplateService(config);
-
-            Razor.SetTemplateService(templateService);
-            
+	        var config = new TemplateServiceConfiguration();
+	        _templateService = new TemplateService(config);
         }
+
+        public RazorViewEngine(Type rootLocatorType) 
+        {
+            var config = new TemplateServiceConfiguration { Resolver = new EmbeddedResolver(rootLocatorType) };
+	        _templateService = new TemplateService(config);
+        }
+
+		public RazorViewEngine(ITemplateResolver resolver)
+		{
+			if (resolver == null)
+				throw new ArgumentNullException("resolver");
+
+			var config = new TemplateServiceConfiguration { Resolver = resolver };
+			_templateService = new TemplateService(config);
+		}
 
         public void RenderTo<T>(T model, Stream templateStream, Stream outputStream)
         {
             string template = new StreamReader(templateStream).ReadToEnd();
-            string result = Razor.Parse<T>(template, model);
+            string result = _templateService.Parse(template, model);
+
             var sw = new StreamWriter(outputStream);
-         
             sw.Write(result);
             sw.Flush();
         }
 
-
         public Collection<MediaTypeHeaderValue> SupportedMediaTypes
         {
-            get { return new Collection<MediaTypeHeaderValue>() {new MediaTypeHeaderValue("text/html")}; }
+            get
+            {
+                return new Collection<MediaTypeHeaderValue>
+                {
+                    new MediaTypeHeaderValue("text/html"),
+                    new MediaTypeHeaderValue("application/xhtml")
+                };
+            }
         }
-
     }
 }

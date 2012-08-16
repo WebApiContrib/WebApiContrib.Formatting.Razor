@@ -1,8 +1,8 @@
 ﻿using System;
 using System.IO;
 using System.Net;
+using System.Net.Http;
 using System.Net.Http.Formatting;
-using System.Net.Http.Headers;
 using System.Threading.Tasks;
 
 namespace WebApiContrib.Formatting.RazorViewEngine
@@ -31,7 +31,7 @@ namespace WebApiContrib.Formatting.RazorViewEngine
             return typeof(View) == type;
         }
 
-        public override Task WriteToStreamAsync(Type type, object value, Stream stream, HttpContentHeaders contentHeaders, TransportContext transportContext)
+        public override Task WriteToStreamAsync(Type type, object value, Stream stream, HttpContent content, TransportContext transportContext)
         {
             var tcs = new TaskCompletionSource<Stream>();
 
