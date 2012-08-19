@@ -78,10 +78,9 @@
     <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
     <ProjectReference Include="..\..\src\WebApiContrib.Formatting.RazorViewEngine\WebApiContrib.Formatting.RazorViewEngine.csproj">
-      <Project>{75FA4F0E-ACC6-424A-8809-B25E7AB17EFE}</Project>
+      <Project>{75fa4f0e-acc6-424a-8809-b25e7ab17efe}</Project>
       <Name>WebApiContrib.Formatting.RazorViewEngine</Name>
     </ProjectReference>
   </ItemGroup>
