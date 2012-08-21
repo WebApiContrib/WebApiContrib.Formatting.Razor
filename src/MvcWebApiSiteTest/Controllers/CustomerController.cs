@@ -1,7 +1,6 @@
-﻿using System;
-using System.Web.Http;
+﻿using System.Web.Http;
 
-namespace MvcApplication1.Controllers
+namespace MvcWebApiSiteTest.Controllers
 {
     public class CustomerController : ApiController
     {

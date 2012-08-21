@@ -10,7 +10,7 @@ using WebApiContrib.Formatting.Html.Configuration;
 using WebApiContrib.Formatting.Html.Formatters;
 using WebApiContrib.Formatting.Razor;
 
-namespace MvcApplication1
+namespace MvcWebApiSiteTest
 {
     // Note: For instructions on enabling IIS6 or IIS7 classic mode, 
     // visit http://go.microsoft.com/?LinkId=9394801
@@ -26,7 +26,6 @@ namespace MvcApplication1
             GlobalViews.DefaultViewParser = new RazorViewParser();
             GlobalViews.DefaultViewLocator = new RazorViewLocator();
 
-            ViewConfig.RegisterViews(GlobalViews.Views);
             WebApiConfig.Register(GlobalConfiguration.Configuration);
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);

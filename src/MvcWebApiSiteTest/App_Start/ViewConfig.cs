@@ -1,8 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using MvcApplication1.Controllers;
 
-namespace MvcApplication1
+namespace MvcWebApiSiteTest.App_Start
 {
     public class ViewConfig
     {
