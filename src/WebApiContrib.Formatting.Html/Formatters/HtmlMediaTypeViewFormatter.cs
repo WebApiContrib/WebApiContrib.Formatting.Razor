@@ -26,7 +26,6 @@ namespace WebApiContrib.Formatting.Html.Formatters
         {
         }
 
-
         public HtmlMediaTypeViewFormatter(string siteRootPath, IViewLocator viewLocator = null, IViewParser viewParser = null)
         {
             SupportedMediaTypes.Add(new MediaTypeHeaderValue("text/html"));
@@ -44,7 +43,6 @@ namespace WebApiContrib.Formatting.Html.Formatters
 
             _siteRootPath = siteRootPath;
         }
-
 
         private IViewLocator ViewLocator
         {
@@ -65,7 +63,6 @@ namespace WebApiContrib.Formatting.Html.Formatters
             }
         }
 
-
         private IViewParser ViewParser
         {
             get
@@ -85,28 +82,20 @@ namespace WebApiContrib.Formatting.Html.Formatters
             }
         }
 
-
         public override bool CanWriteType(Type type)
         {
             return true;
         }
-
 
         public override bool CanReadType(Type type)
         {
             return false;
         }
 
-
-        public override Task<object> ReadFromStreamAsync(
-                                                        Type type,
-                                                        Stream readStream,
-                                                        HttpContent content,
-                                                        IFormatterLogger formatterLogger)
+        public override Task<object> ReadFromStreamAsync(Type type, Stream readStream, HttpContent content, IFormatterLogger formatterLogger)
         {
             throw new NotSupportedException();
         }
-
 
         public override Task WriteToStreamAsync(Type type, object value, Stream writeStream, HttpContent content, TransportContext transportContext)
         {
@@ -125,7 +114,6 @@ namespace WebApiContrib.Formatting.Html.Formatters
             });
         }
 
-
         private byte[] ParseView(Type type, object model, Encoding encoding)
         {
             var view = model as IView ?? new View(GetViewName(model), model, type);
@@ -134,7 +122,6 @@ namespace WebApiContrib.Formatting.Html.Formatters
 
             return ViewParser.ParseView(view, viewTemplate, encoding);
         }
-
 
         private static string GetViewName(object model)
         {

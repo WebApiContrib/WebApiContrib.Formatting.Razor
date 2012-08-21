@@ -74,14 +74,20 @@
     <Compile Include="ViewEngineTests.cs" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Embed.cshtml" />
+    <EmbeddedResource Include="Views\Embed.cshtml" />
     <None Include="App.config" />
+    <EmbeddedResource Include="Views\Test1.cshtml" />
+    <EmbeddedResource Include="Views\Test2.cshtml" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\src\WebApiContrib.Formatting.RazorViewEngine\WebApiContrib.Formatting.RazorViewEngine.csproj">
-      <Project>{75fa4f0e-acc6-424a-8809-b25e7ab17efe}</Project>
-      <Name>WebApiContrib.Formatting.RazorViewEngine</Name>
+    <ProjectReference Include="..\..\src\WebApiContrib.Formatting.Html\WebApiContrib.Formatting.Html.csproj">
+      <Project>{1055BCC1-BBB1-45F2-8260-E00959A6AC89}</Project>
+      <Name>WebApiContrib.Formatting.Html</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\src\WebApiContrib.Formatting.Razor\WebApiContrib.Formatting.Razor.csproj">
+      <Project>{8C15B0D3-9108-4EA3-AE19-3C9571266C47}</Project>
+      <Name>WebApiContrib.Formatting.Razor</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -16,7 +16,6 @@ namespace WebApiContrib.Formatting.Razor
                 "~\\Views\\Shared\\{0}.vbhtml"
             };
 
-
         public string GetView(string siteRootPath, IView view)
         {
             if (view == null)
@@ -37,13 +36,14 @@ namespace WebApiContrib.Formatting.Razor
             throw new FileNotFoundException(string.Format("Can't find a view with the name '{0}.cshtml' or '{0}.vbhtml in the '\\Views' folder under  path '{1}'", view.ViewName, path));
         }
 
-
         internal static string GetPhysicalSiteRootPath(string siteRootPath)
         {
             if (string.IsNullOrWhiteSpace(siteRootPath))
                 return Path.GetDirectoryName(Assembly.GetExecutingAssembly().CodeBase)
                            .Replace("file:\\", string.Empty)
-                           .Replace("\\bin", string.Empty);
+                           .Replace("\\bin", string.Empty)
+                           .Replace("\\Debug", string.Empty)
+                           .Replace("\\Release", string.Empty);
 
             return siteRootPath;
         }

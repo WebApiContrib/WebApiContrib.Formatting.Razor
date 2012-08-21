@@ -2,7 +2,7 @@
 using System.IO;
 using RazorEngine.Templating;
 
-namespace WebApiContrib.Formatting.RazorViewEngine
+namespace WebApiContrib.Formatting.Razor
 {
     public class EmbeddedResolver : ITemplateResolver
     {
