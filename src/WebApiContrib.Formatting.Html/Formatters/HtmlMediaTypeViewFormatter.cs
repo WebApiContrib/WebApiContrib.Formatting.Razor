@@ -8,7 +8,6 @@ using System.Net.Http.Headers;
 using System.Text;
 using System.Threading.Tasks;
 using System.Linq;
-using System.Web.Http;
 using WebApiContrib.Formatting.Html.Common;
 using WebApiContrib.Formatting.Html.Configuration;
 using WebApiContrib.Formatting.Html.Locators;
@@ -22,11 +21,7 @@ namespace WebApiContrib.Formatting.Html.Formatters
         private readonly IViewLocator _viewLocator;
         private readonly IViewParser _viewParser;
 
-        public HtmlMediaTypeViewFormatter() : this(null, null, null)
-        {
-        }
-
-        public HtmlMediaTypeViewFormatter(string siteRootPath, IViewLocator viewLocator = null, IViewParser viewParser = null)
+        public HtmlMediaTypeViewFormatter(string siteRootPath = null, IViewLocator viewLocator = null, IViewParser viewParser = null)
         {
             SupportedMediaTypes.Add(new MediaTypeHeaderValue("text/html"));
             SupportedMediaTypes.Add(new MediaTypeHeaderValue("application/xhtml"));
@@ -35,12 +30,8 @@ namespace WebApiContrib.Formatting.Html.Formatters
             SupportedEncodings.Add(new UTF8Encoding(encoderShouldEmitUTF8Identifier: false, throwOnInvalidBytes: true));
             SupportedEncodings.Add(new UnicodeEncoding(bigEndian: false, byteOrderMark: true, throwOnInvalidBytes: true));
 
-            if (viewLocator != null)
-                _viewLocator = viewLocator;
-
-            if (viewParser != null)
-                _viewParser = viewParser;
-
+            _viewLocator = viewLocator;
+            _viewParser = viewParser;
             _siteRootPath = siteRootPath;
         }
 
@@ -53,11 +44,6 @@ namespace WebApiContrib.Formatting.Html.Formatters
 
                 if (GlobalViews.DefaultViewLocator != null)
                     return GlobalViews.DefaultViewLocator;
-
-                var viewLocator = GlobalConfiguration.Configuration.DependencyResolver.GetService(typeof (IViewLocator)) as IViewLocator;
-
-                if (viewLocator != null)
-                    return viewLocator;
 
                 throw new ConfigurationErrorsException("No ViewLocator is specidied");
             }
@@ -72,11 +58,6 @@ namespace WebApiContrib.Formatting.Html.Formatters
 
                 if (GlobalViews.DefaultViewParser != null)
                     return GlobalViews.DefaultViewParser;
-
-                var viewParser = GlobalConfiguration.Configuration.DependencyResolver.GetService(typeof(IViewParser)) as IViewParser;
-
-                if (viewParser != null)
-                    return viewParser;
 
                 throw new ConfigurationErrorsException("No ViewParser is specidied");
             }
@@ -95,6 +76,24 @@ namespace WebApiContrib.Formatting.Html.Formatters
         public override Task<object> ReadFromStreamAsync(Type type, Stream readStream, HttpContent content, IFormatterLogger formatterLogger)
         {
             throw new NotSupportedException();
+        }
+
+        public override MediaTypeFormatter GetPerRequestFormatterInstance(Type type, HttpRequestMessage request, MediaTypeHeaderValue mediaType)
+        {
+            if (_viewLocator == null || _viewParser == null)
+            {
+                var config = request.GetConfiguration();
+                if (config != null)
+                {
+                    var resolver = config.DependencyResolver;
+                    IViewLocator viewLocator = (IViewLocator) resolver.GetService(typeof (IViewLocator));
+                    IViewParser viewParser = (IViewParser) resolver.GetService(typeof (IViewParser));
+                    if (viewLocator != null && viewParser != null)
+                        return new HtmlMediaTypeViewFormatter(_siteRootPath, viewLocator, viewParser);
+                }
+            }
+
+            return base.GetPerRequestFormatterInstance(type, request, mediaType);
         }
 
         public override Task WriteToStreamAsync(Type type, object value, Stream writeStream, HttpContent content, TransportContext transportContext)
