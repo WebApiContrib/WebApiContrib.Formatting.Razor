@@ -13,7 +13,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApiContrib.Formatting.Ht
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApiContrib.Formatting.Razor", "src\WebApiContrib.Formatting.Razor\WebApiContrib.Formatting.Razor.csproj", "{8C15B0D3-9108-4EA3-AE19-3C9571266C47}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MvcWebApiSiteTest", "src\MvcWebApiSiteTest\MvcWebApiSiteTest.csproj", "{5D90E626-1C40-4B23-887A-DC2527D696CB}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MvcWebApiSiteTest", "samples\MvcWebApiSiteTest\MvcWebApiSiteTest.csproj", "{5D90E626-1C40-4B23-887A-DC2527D696CB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
