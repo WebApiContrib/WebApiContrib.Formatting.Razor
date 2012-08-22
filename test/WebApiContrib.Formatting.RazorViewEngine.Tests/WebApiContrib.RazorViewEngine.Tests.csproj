@@ -74,7 +74,7 @@
     <Compile Include="ViewEngineTests.cs" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Views\Embed.cshtml" />
+    <EmbeddedResource Include="Embed.cshtml" />
     <None Include="App.config" />
     <EmbeddedResource Include="Views\Test1.cshtml" />
     <EmbeddedResource Include="Views\Test2.cshtml" />
