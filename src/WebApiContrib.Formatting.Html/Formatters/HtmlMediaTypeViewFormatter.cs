@@ -79,10 +79,6 @@ namespace WebApiContrib.Formatting.Html.Formatters
 
         public override Task WriteToStreamAsync(Type type, object value, Stream writeStream, HttpContent content, TransportContext transportContext)
         {
-            //Type can be of type HttpError, it will happen if the ApiController throws an exception, there is nothing in this code at the moment
-            //that will handle that issue. This code will try to locate a HttpError.cshtml file, even if it exists, the header will be 500 and 
-            //the HttpError page will not be displayed, only the default 500 error page.
-
             return TaskHelpers.RunSync(() =>
             {
                 var encoding = SelectCharacterEncoding(content.Headers);
