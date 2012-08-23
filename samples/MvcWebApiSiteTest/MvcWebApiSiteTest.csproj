@@ -246,11 +246,11 @@
     <Content Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\WebApiContrib.Formatting.Html\WebApiContrib.Formatting.Html.csproj">
+    <ProjectReference Include="..\..\src\WebApiContrib.Formatting.Html\WebApiContrib.Formatting.Html.csproj">
       <Project>{1055bcc1-bbb1-45f2-8260-e00959a6ac89}</Project>
       <Name>WebApiContrib.Formatting.Html</Name>
     </ProjectReference>
-    <ProjectReference Include="..\WebApiContrib.Formatting.Razor\WebApiContrib.Formatting.Razor.csproj">
+    <ProjectReference Include="..\..\src\WebApiContrib.Formatting.Razor\WebApiContrib.Formatting.Razor.csproj">
       <Project>{8c15b0d3-9108-4ea3-ae19-3c9571266c47}</Project>
       <Name>WebApiContrib.Formatting.Razor</Name>
     </ProjectReference>

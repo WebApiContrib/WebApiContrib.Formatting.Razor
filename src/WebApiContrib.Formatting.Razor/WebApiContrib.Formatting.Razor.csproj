@@ -41,13 +41,10 @@
       <Private>True</Private>
       <HintPath>..\..\packages\RazorEngine.3.0.8\lib\net40\System.Web.Razor.dll</HintPath>
     </Reference>
-    <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
-    <Reference Include="System.Data" />
-    <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="EmbeddedResolver.cs" />
     <Compile Include="TemplateResolver.cs" />
     <Compile Include="RazorViewLocator.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

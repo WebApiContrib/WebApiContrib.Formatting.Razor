@@ -1,53 +1,43 @@
-﻿using System.IO;
+﻿using System.Net.Http;
 using NUnit.Framework;
-using RazorEngine.Configuration;
-using RazorEngine.Templating;
+using WebApiContrib.Formatting.Html;
+using WebApiContrib.Formatting.Html.Configuration;
+using WebApiContrib.Formatting.Html.Formatters;
+using WebApiContrib.Formatting.Razor;
 
 namespace WebApiContrib.Formatting.RazorViewEngine.Tests
 {
     [TestFixture]
     public class ViewEngineTests
     {
+        private HtmlMediaTypeViewFormatter _formatter;
+
+        [SetUp]
+        public void Before()
+        {
+            _formatter = new HtmlMediaTypeViewFormatter();
+            GlobalViews.DefaultViewParser = new RazorViewParser();
+            GlobalViews.DefaultViewLocator = new RazorViewLocator();
+        }
+
         [Test]
         public void render_simple_template()
         {
-            var formatter = new ViewEngineFormatter(new RazorViewEngine());
+            var view = new View("Test1", new {Name = "foo"});
+            var content = new ObjectContent<View>(view, _formatter);
 
-            MemoryStream templateStream = GetStreamFromString("Hello @Model.Name! Welcome to Razor!");
+            var output = content.ReadAsStringAsync().Result;
 
-            var outputStream = new MemoryStream();
-
-            var view = new View(templateStream, new {Name = "foo"});
-            
-            var task = formatter.WriteToStreamAsync(typeof(View), view, outputStream, null, null);
-
-            task.Wait();
-
-            outputStream.Position = 0;
-
-            var output = new StreamReader(outputStream).ReadToEnd();
-
-            Assert.AreEqual("Hello foo! Welcome to Razor!",output);
+            Assert.AreEqual("Hello foo! Welcome to Razor!", output);
         }
 
         [Test]
         public void render_template_with_embedded_layout()
         {
-            MemoryStream templateStream = GetStreamFromString(@"@{_Layout = ""~/Embed.cshtml"";}Hello @Model.Name! Welcome to Razor!");
+            var view = new View("Test2", new { Name = "foo" });
+            var content = new ObjectContent<View>(view, _formatter);
 
-            var outputStream = new MemoryStream();
-
-            var formatter = new ViewEngineFormatter(new RazorViewEngine(this.GetType()));
-
-            var view = new View(templateStream, new { Name = "foo" });
-
-            var task = formatter.WriteToStreamAsync(typeof(View), view, outputStream, null, null);
-
-            task.Wait();
-
-            outputStream.Position = 0;
-
-            var output = new StreamReader(outputStream).ReadToEnd();
+            var output = content.ReadAsStringAsync().Result;
 
             Assert.AreEqual("<html>Hello foo! Welcome to Razor!</html>", output);
         }
@@ -55,35 +45,14 @@ namespace WebApiContrib.Formatting.RazorViewEngine.Tests
         [Test]
         public void render_template_with_specified_resolver()
         {
-            MemoryStream templateStream = GetStreamFromString(@"@{_Layout = ""~/Embed.cshtml"";}Hello @Model.Name! Welcome to Razor!");
+            var resolver = new EmbeddedResolver(this.GetType());
+            var formatter = new HtmlMediaTypeViewFormatter(null, new RazorViewLocator(), new RazorViewParser(resolver));
+            var view = new View("Test2", new { Name = "foo" });
+            var content = new ObjectContent<View>(view, formatter);
 
-            var outputStream = new MemoryStream();
-
-	        var resolver = new EmbeddedResolver(this.GetType());
-
-            var formatter = new ViewEngineFormatter(new RazorViewEngine(resolver));
-
-            var view = new View(templateStream, new { Name = "foo" });
-
-            var task = formatter.WriteToStreamAsync(typeof(View), view, outputStream, null, null);
-
-            task.Wait();
-
-            outputStream.Position = 0;
-
-            var output = new StreamReader(outputStream).ReadToEnd();
+            var output = content.ReadAsStringAsync().Result;
 
             Assert.AreEqual("<html>Hello foo! Welcome to Razor!</html>", output);
-        }
-
-        private static MemoryStream GetStreamFromString(string helloModelNameWelcomeToRazor)
-        {
-            var templateStream = new MemoryStream();
-            var sr = new StreamWriter(templateStream);
-            sr.Write(helloModelNameWelcomeToRazor);
-            sr.Flush();
-            templateStream.Position = 0;
-            return templateStream;
         }
     }
 }
