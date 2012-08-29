@@ -35,34 +35,7 @@ namespace WebApiContrib.Formatting.Html.Formatters
             _siteRootPath = siteRootPath;
         }
 
-        private IViewLocator ViewLocator
-        {
-            get
-            {
-                if (_viewLocator != null)
-                    return _viewLocator;
-
-                if (GlobalViews.DefaultViewLocator != null)
-                    return GlobalViews.DefaultViewLocator;
-
-                throw new ConfigurationErrorsException("No ViewLocator is specidied");
-            }
-        }
-
-        private IViewParser ViewParser
-        {
-            get
-            {
-                if (_viewParser != null)
-                    return _viewParser;
-
-                if (GlobalViews.DefaultViewParser != null)
-                    return GlobalViews.DefaultViewParser;
-
-                throw new ConfigurationErrorsException("No ViewParser is specidied");
-            }
-        }
-
+  
         public override bool CanWriteType(Type type)
         {
             return true;
@@ -83,13 +56,21 @@ namespace WebApiContrib.Formatting.Html.Formatters
             if (_viewLocator == null || _viewParser == null)
             {
                 var config = request.GetConfiguration();
+
                 if (config != null)
                 {
+                    IViewLocator viewLocator = null;
+                    IViewParser viewParser = null;
+
                     var resolver = config.DependencyResolver;
-                    IViewLocator viewLocator = (IViewLocator) resolver.GetService(typeof (IViewLocator));
-                    IViewParser viewParser = (IViewParser) resolver.GetService(typeof (IViewParser));
-                    if (viewLocator != null && viewParser != null)
-                        return new HtmlMediaTypeViewFormatter(_siteRootPath, viewLocator, viewParser);
+
+                    if (_viewLocator == null)
+                        viewLocator = (IViewLocator) resolver.GetService(typeof (IViewLocator));
+
+                    if (_viewParser == null)
+                        viewParser = (IViewParser) resolver.GetService(typeof (IViewParser));
+
+                    return new HtmlMediaTypeViewFormatter(_siteRootPath, viewLocator, viewParser);
                 }
             }
 
@@ -98,10 +79,6 @@ namespace WebApiContrib.Formatting.Html.Formatters
 
         public override Task WriteToStreamAsync(Type type, object value, Stream writeStream, HttpContent content, TransportContext transportContext)
         {
-            //Type can be of type HttpError, it will happen if the ApiController throws an exception, there is nothing in this code at the moment
-            //that will handle that issue. This code will try to locate a HttpError.cshtml file, even if it exists, the header will be 500 and 
-            //the HttpError page will not be displayed, only the default 500 error page.
-
             return TaskHelpers.RunSync(() =>
             {
                 var encoding = SelectCharacterEncoding(content.Headers);
@@ -120,6 +97,34 @@ namespace WebApiContrib.Formatting.Html.Formatters
             var viewTemplate = ViewLocator.GetView(_siteRootPath, view);
 
             return ViewParser.ParseView(view, viewTemplate, encoding);
+        }
+
+        private IViewLocator ViewLocator
+        {
+            get
+            {
+                if (_viewLocator != null)
+                    return _viewLocator;
+
+                if (GlobalViews.DefaultViewLocator != null)
+                    return GlobalViews.DefaultViewLocator;
+
+                throw new ConfigurationErrorsException("No ViewLocator is specified");
+            }
+        }
+
+        private IViewParser ViewParser
+        {
+            get
+            {
+                if (_viewParser != null)
+                    return _viewParser;
+
+                if (GlobalViews.DefaultViewParser != null)
+                    return GlobalViews.DefaultViewParser;
+
+                throw new ConfigurationErrorsException("No ViewParser is specified");
+            }
         }
 
         private static string GetViewName(object model)

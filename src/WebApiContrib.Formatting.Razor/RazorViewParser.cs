@@ -38,11 +38,21 @@ namespace WebApiContrib.Formatting.Razor
         
         public byte[] ParseView(IView view, string viewTemplate, System.Text.Encoding encoding)
         {
-            _templateService.Compile(viewTemplate, view.ModelType, view.ModelType.Name);
-
-            var parsedView = _templateService.Run(view.ModelType.Name, view.Model);
+            var parsedView = GetParsedView(view, viewTemplate);
 
             return encoding.GetBytes(parsedView);
+        }
+
+        private string GetParsedView(IView view, string viewTemplate)
+        {
+            if (view.ModelType == null)
+            {
+                _templateService.Compile(viewTemplate, view.ViewName);
+                return _templateService.Run(view.ViewName);
+            }
+
+            _templateService.Compile(viewTemplate, view.ModelType, view.ViewName);
+            return _templateService.Run(view.ViewName, view.Model);
         }
     }
 }

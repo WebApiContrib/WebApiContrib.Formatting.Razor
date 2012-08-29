@@ -15,7 +15,6 @@ namespace MvcWebApiSiteTest.Controllers
         {
             return new Customer { Name = "John Doe", Country = "Sweden" };
         }
-
     }
 
 

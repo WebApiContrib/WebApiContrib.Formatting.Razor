@@ -130,6 +130,7 @@
     <Compile Include="App_Start\ViewConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\CustomerController.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -230,13 +231,13 @@
     <Content Include="Images\orderedList9.png" />
     <Content Include="Scripts\_references.js" />
     <Content Include="Views\Web.config" />
-    <Content Include="Views\_ViewStart.cshtml" />
-    <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Customer.cshtml" />
     <Content Include="Views\CustomerViaAttrib.cshtml" />
     <Content Include="Views\CustomerViaConfig.cshtml" />
     <Content Include="Views\CustomerViaView.cshtml" />
+    <Content Include="Views\Shared\HttpError.cshtml" />
+    <Content Include="Views\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
