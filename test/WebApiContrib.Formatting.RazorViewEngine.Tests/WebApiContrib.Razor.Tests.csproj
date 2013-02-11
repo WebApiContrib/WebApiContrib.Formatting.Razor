@@ -8,8 +8,8 @@
     <ProjectGuid>{960EDBC5-0C46-4CD7-B0B6-B4D5F30B9092}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>WebApiContrib.Formatting.RazorViewEngine.Tests</RootNamespace>
-    <AssemblyName>WebApiContrib.Formatting.RazorViewEngine.Tests</AssemblyName>
+    <RootNamespace>WebApiContrib.Formatting.Razor.Tests</RootNamespace>
+    <AssemblyName>WebApiContrib.Formatting.Razor.Tests</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <RestorePackages>true</RestorePackages>

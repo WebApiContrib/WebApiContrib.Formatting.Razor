@@ -3,9 +3,8 @@ using NUnit.Framework;
 using WebApiContrib.Formatting.Html;
 using WebApiContrib.Formatting.Html.Configuration;
 using WebApiContrib.Formatting.Html.Formatters;
-using WebApiContrib.Formatting.Razor;
 
-namespace WebApiContrib.Formatting.RazorViewEngine.Tests
+namespace WebApiContrib.Formatting.Razor.Tests
 {
     [TestFixture]
     public class ViewEngineTests
