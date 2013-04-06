@@ -20,3 +20,7 @@ You also need to register the formatter and set the `GlobalViews.DefaultViewPars
 
     GlobalViews.DefaultViewParser = new RazorViewParser();
     GlobalViews.DefaultViewLocator = new RazorViewLocator();
+    // If using ViewConfig:
+    //ViewConfig.Register(GlobalViews.Views);
+
+The [`GlobalViews`](https://github.com/WebApiContrib/WebApiContrib.Formatting.Html/blob/master/src/WebApiContrib.Formatting.Html/Configuration/GlobalViews.cs) configuration comes from the [WebApiContrib.Formatting.Html](https://github.com/WebApiContrib/WebApiContrib.Formatting.Html) project.
