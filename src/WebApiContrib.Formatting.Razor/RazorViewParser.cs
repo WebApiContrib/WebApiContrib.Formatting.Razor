@@ -45,14 +45,8 @@ namespace WebApiContrib.Formatting.Razor
 
         private string GetParsedView(IView view, string viewTemplate)
         {
-            if (view.ModelType == null)
-            {
-                _templateService.Compile(viewTemplate, view.ViewName);
-                return _templateService.Run(view.ViewName);
-            }
-
             _templateService.Compile(viewTemplate, view.ModelType, view.ViewName);
-            return _templateService.Run(view.ViewName, view.Model);
+            return _templateService.Run(view.ViewName, view.Model, null);
         }
     }
 }
