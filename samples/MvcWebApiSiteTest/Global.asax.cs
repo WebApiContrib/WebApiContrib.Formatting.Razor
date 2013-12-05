@@ -6,8 +6,8 @@ using System.Web.Http;
 using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
-using WebApiContrib.Formatting.Html.Configuration;
-using WebApiContrib.Formatting.Html.Formatters;
+using WebApiContrib.Formatting.Html;
+using WebApiContrib.Formatting.Html.Formatting;
 using WebApiContrib.Formatting.Razor;
 
 namespace MvcWebApiSiteTest

@@ -2,8 +2,6 @@
 using RazorEngine.Configuration;
 using RazorEngine.Templating;
 using WebApiContrib.Formatting.Html;
-using WebApiContrib.Formatting.Html.ViewParsers;
-
 
 namespace WebApiContrib.Formatting.Razor
 {
@@ -11,13 +9,13 @@ namespace WebApiContrib.Formatting.Razor
     {
         private readonly ITemplateService _templateService;
 
-		public RazorViewParser(ITemplateService templateService)
-		{
-			if (templateService == null)
-				throw new ArgumentNullException("templateService");
+        public RazorViewParser(ITemplateService templateService)
+        {
+            if (templateService == null)
+                throw new ArgumentNullException("templateService");
 
-			_templateService = templateService;
-		}
+            _templateService = templateService;
+        }
 
         public RazorViewParser()
         {
@@ -27,13 +25,13 @@ namespace WebApiContrib.Formatting.Razor
 
 
         public RazorViewParser(ITemplateResolver resolver)
-		{
-			if (resolver == null)
-				throw new ArgumentNullException("resolver");
+        {
+            if (resolver == null)
+                throw new ArgumentNullException("resolver");
 
-			var config = new TemplateServiceConfiguration { Resolver = resolver };
-			_templateService = new TemplateService(config);
-		}
+            var config = new TemplateServiceConfiguration { Resolver = resolver };
+            _templateService = new TemplateService(config);
+        }
         
         
         public byte[] ParseView(IView view, string viewTemplate, System.Text.Encoding encoding)
