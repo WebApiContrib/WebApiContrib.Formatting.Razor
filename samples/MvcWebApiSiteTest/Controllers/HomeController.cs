@@ -5,9 +5,9 @@ namespace MvcWebApiSiteTest.Controllers
 {
     public class HomeController : ApiController
     {
-        public View Get()
+        public IHttpActionResult Get()
         {
-            return new View("Index", null);
+            return new ViewResult(Request, "Index", null);
         }
     }
 }
