@@ -2,7 +2,6 @@
 using System.IO;
 using System.Reflection;
 using WebApiContrib.Formatting.Html;
-using WebApiContrib.Formatting.Html.Locators;
 
 namespace WebApiContrib.Formatting.Razor
 {

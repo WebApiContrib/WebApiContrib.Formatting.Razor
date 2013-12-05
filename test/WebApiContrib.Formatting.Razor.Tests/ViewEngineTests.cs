@@ -1,8 +1,9 @@
 ﻿using System.Net.Http;
+using System.Threading;
+using System.Threading.Tasks;
 using NUnit.Framework;
 using WebApiContrib.Formatting.Html;
-using WebApiContrib.Formatting.Html.Configuration;
-using WebApiContrib.Formatting.Html.Formatters;
+using WebApiContrib.Formatting.Html.Formatting;
 
 namespace WebApiContrib.Formatting.Razor.Tests
 {
@@ -20,36 +21,39 @@ namespace WebApiContrib.Formatting.Razor.Tests
         }
 
         [Test]
-        public void render_simple_template()
+        public async Task render_simple_template()
         {
-            var view = new View("Test1", new {Name = "foo"});
-            var content = new ObjectContent<View>(view, _formatter);
+            var cts = new CancellationTokenSource();
+            var view = new ViewResult(new HttpRequestMessage(), "Test1", new {Name = "foo"});
 
-            var output = content.ReadAsStringAsync().Result;
+            var response = await view.ExecuteAsync(cts.Token);
+            var output = await response.Content.ReadAsStringAsync();
 
             Assert.AreEqual("Hello foo! Welcome to Razor!", output);
         }
 
         [Test]
-        public void render_template_with_embedded_layout()
+        public async Task render_template_with_embedded_layout()
         {
-            var view = new View("Test2", new { Name = "foo" });
-            var content = new ObjectContent<View>(view, _formatter);
+            var cts = new CancellationTokenSource();
+            var view = new ViewResult(new HttpRequestMessage(), "Test2", new { Name = "foo" });
 
-            var output = content.ReadAsStringAsync().Result;
+            var response = await view.ExecuteAsync(cts.Token);
+            var output = await response.Content.ReadAsStringAsync();
 
             Assert.AreEqual("<html>Hello foo! Welcome to Razor!</html>", output);
         }
 
         [Test]
-        public void render_template_with_specified_resolver()
+        public async Task render_template_with_specified_resolver()
         {
+            var cts = new CancellationTokenSource();
             var resolver = new EmbeddedResolver(this.GetType());
             var formatter = new HtmlMediaTypeViewFormatter(null, new RazorViewLocator(), new RazorViewParser(resolver));
-            var view = new View("Test2", new { Name = "foo" });
-            var content = new ObjectContent<View>(view, formatter);
+            var view = new ViewResult(new HttpRequestMessage(), "Test2", new { Name = "foo" });
 
-            var output = content.ReadAsStringAsync().Result;
+            var response = await view.ExecuteAsync(cts.Token);
+            var output = await response.Content.ReadAsStringAsync();
 
             Assert.AreEqual("<html>Hello foo! Welcome to Razor!</html>", output);
         }
