@@ -63,6 +63,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="EmbeddedResolver.cs" />
+    <Compile Include="RazorViewFormatter.cs" />
     <Compile Include="TemplateResolver.cs" />
     <Compile Include="RazorViewLocator.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
