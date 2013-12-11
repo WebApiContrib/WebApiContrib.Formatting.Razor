@@ -6,9 +6,6 @@ using System.Web.Http;
 using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
-using WebApiContrib.Formatting.Html;
-using WebApiContrib.Formatting.Html.Formatting;
-using WebApiContrib.Formatting.Razor;
 
 namespace MvcWebApiSiteTest
 {
@@ -20,11 +17,6 @@ namespace MvcWebApiSiteTest
         protected void Application_Start()
         {
             AreaRegistration.RegisterAllAreas();
-
-            GlobalConfiguration.Configuration.Formatters.Add(new HtmlMediaTypeViewFormatter());
-
-            GlobalViews.DefaultViewParser = new RazorViewParser();
-            GlobalViews.DefaultViewLocator = new RazorViewLocator();
 
             WebApiConfig.Register(GlobalConfiguration.Configuration);
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);

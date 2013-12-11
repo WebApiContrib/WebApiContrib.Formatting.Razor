@@ -3,6 +3,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Web.Http;
 using NUnit.Framework;
+using RazorEngine.Configuration;
 using WebApiContrib.Formatting.Html;
 using WebApiContrib.Formatting.Html.Formatting;
 
@@ -61,7 +62,8 @@ namespace WebApiContrib.Formatting.Razor.Tests
         {
             var cts = new CancellationTokenSource();
             var resolver = new EmbeddedResolver(this.GetType());
-            var formatter = new HtmlMediaTypeViewFormatter(null, new RazorViewLocator(), new RazorViewParser(resolver));
+            var templateConfig = new TemplateServiceConfiguration { Resolver = resolver };
+            var formatter = new HtmlMediaTypeViewFormatter(null, new RazorViewLocator(), new RazorViewParser(templateConfig));
 
             // Replace the HTML formatter.
             var config = _request.GetConfiguration();

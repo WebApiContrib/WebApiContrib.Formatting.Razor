@@ -1,4 +1,8 @@
 ﻿using System.Web.Http;
+using RazorEngine.Configuration;
+using WebApiContrib.Formatting.Html;
+using WebApiContrib.Formatting.Html.Formatting;
+using WebApiContrib.Formatting.Razor;
 
 namespace MvcWebApiSiteTest
 {
@@ -6,6 +10,8 @@ namespace MvcWebApiSiteTest
     {
         public static void Register(HttpConfiguration config)
         {
+            config.Formatters.Add(new RazorViewFormatter());
+
             config.Routes.MapHttpRoute(
                 name: "DefaultApi",
                 routeTemplate: "{controller}/{id}",

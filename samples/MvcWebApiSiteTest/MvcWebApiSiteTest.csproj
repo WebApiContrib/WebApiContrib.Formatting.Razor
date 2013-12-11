@@ -54,6 +54,10 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\packages\Newtonsoft.Json.5.0.8\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
+    <Reference Include="RazorEngine, Version=3.4.0.0, Culture=neutral, PublicKeyToken=9ee697374c7e744a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\packages\RazorEngine.3.4.0\lib\net45\RazorEngine.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Net.Http" />
@@ -244,6 +248,10 @@
     <Content Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\src\WebApiContrib.Formatting.Razor.Templating\WebApiContrib.Formatting.Razor.Templating.csproj">
+      <Project>{36287dd3-6930-4c13-93b7-06fe600278f9}</Project>
+      <Name>WebApiContrib.Formatting.Razor.Templating</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\src\WebApiContrib.Formatting.Razor\WebApiContrib.Formatting.Razor.csproj">
       <Project>{8c15b0d3-9108-4ea3-ae19-3c9571266c47}</Project>
       <Name>WebApiContrib.Formatting.Razor</Name>

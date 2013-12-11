@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MvcWebApiSiteTest", "sample
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApiContrib.Razor.Tests", "test\WebApiContrib.Formatting.Razor.Tests\WebApiContrib.Razor.Tests.csproj", "{960EDBC5-0C46-4CD7-B0B6-B4D5F30B9092}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApiContrib.Formatting.Razor.Templating", "src\WebApiContrib.Formatting.Razor.Templating\WebApiContrib.Formatting.Razor.Templating.csproj", "{36287DD3-6930-4C13-93B7-06FE600278F9}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -25,6 +27,10 @@ Global
 		{960EDBC5-0C46-4CD7-B0B6-B4D5F30B9092}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{960EDBC5-0C46-4CD7-B0B6-B4D5F30B9092}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{960EDBC5-0C46-4CD7-B0B6-B4D5F30B9092}.Release|Any CPU.Build.0 = Release|Any CPU
+		{36287DD3-6930-4C13-93B7-06FE600278F9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{36287DD3-6930-4C13-93B7-06FE600278F9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{36287DD3-6930-4C13-93B7-06FE600278F9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{36287DD3-6930-4C13-93B7-06FE600278F9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
