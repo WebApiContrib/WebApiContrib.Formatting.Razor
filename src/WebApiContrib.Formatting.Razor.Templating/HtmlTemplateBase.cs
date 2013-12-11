@@ -85,6 +85,7 @@ namespace WebApiContrib.Formatting.Razor
         /// </summary>
         /// <param name="writer">The current <see cref="TextWriter"/>.</param>
         /// <param name="value">The value to write to the <paramref name="writer"/>.</param>
+        /// <see href="http://stackoverflow.com/questions/19431365/razorengine-html-helpers-work-but-escape-the-html"/>
         public override void WriteTo(TextWriter writer, object value)
         {
             if (writer == null)
