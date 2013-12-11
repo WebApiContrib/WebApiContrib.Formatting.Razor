@@ -37,24 +37,15 @@ namespace WebApiContrib.Formatting.Razor
         }
 
         /// <summary>
-        /// Initializes a new <see cref="RazorViewParser"/> with a default <see cref="ITemplateService"/>
-        /// using the <see cref="WebApiContrib.Formatting.Razor.TemplateResolver"/>.
+        /// Initializes a new <see cref="RazorViewParser"/> with optional arguments.
         /// </summary>
-        public RazorViewParser()
-            : this(new TemplateServiceConfiguration { Resolver = new TemplateResolver() })
+        /// <param name="resolver">The <see cref="ITemplateResolver"/>. If not provided, <see cref="TemplateResolver"/> is used.</param>
+        /// <param name="baseTemplateType">The <see cref="Type"/> to use as the TemplateBase.</param>
+        public RazorViewParser(ITemplateResolver resolver = null, Type baseTemplateType = null)
+            : this(new TemplateServiceConfiguration { BaseTemplateType = baseTemplateType, Resolver = resolver ?? new TemplateResolver() })
         {
         }
 
-        [Obsolete("Use the constructor overload taking an optional ITemplateResolver or the ITemplateServiceConfiguration.")]
-        public RazorViewParser(ITemplateResolver resolver)
-        {
-            if (resolver == null)
-                throw new ArgumentNullException("resolver");
-
-            var config = new TemplateServiceConfiguration { Resolver = resolver };
-            _templateService = new TemplateService(config);
-        }
-        
         /// <summary>
         /// Parses the <paramref name="viewTemplate"/> with the provided <paramref name="view"/>.
         /// </summary>

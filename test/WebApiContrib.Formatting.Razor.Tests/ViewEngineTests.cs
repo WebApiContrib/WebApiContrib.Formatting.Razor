@@ -62,8 +62,7 @@ namespace WebApiContrib.Formatting.Razor.Tests
         {
             var cts = new CancellationTokenSource();
             var resolver = new EmbeddedResolver(this.GetType());
-            var templateConfig = new TemplateServiceConfiguration { Resolver = resolver };
-            var formatter = new HtmlMediaTypeViewFormatter(null, new RazorViewLocator(), new RazorViewParser(templateConfig));
+            var formatter = new HtmlMediaTypeViewFormatter(null, new RazorViewLocator(), new RazorViewParser(resolver));
 
             // Replace the HTML formatter.
             var config = _request.GetConfiguration();

@@ -10,8 +10,7 @@ namespace MvcWebApiSiteTest
     {
         public static void Register(HttpConfiguration config)
         {
-            var templateConfig = new TemplateServiceConfiguration { BaseTemplateType = typeof(HtmlTemplateBase<>) };
-            var viewParser = new RazorViewParser(templateConfig);
+            var viewParser = new RazorViewParser(baseTemplateType: typeof(HtmlTemplateBase<>));
             config.Formatters.Add(new RazorViewFormatter(viewParser: viewParser));
 
             config.Routes.MapHttpRoute(
