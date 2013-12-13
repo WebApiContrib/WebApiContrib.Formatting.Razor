@@ -3,6 +3,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Web.Http;
 using NUnit.Framework;
+using RazorEngine.Configuration;
 using WebApiContrib.Formatting.Html;
 using WebApiContrib.Formatting.Html.Formatting;
 
