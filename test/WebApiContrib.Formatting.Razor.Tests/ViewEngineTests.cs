@@ -46,6 +46,18 @@ namespace WebApiContrib.Formatting.Razor.Tests
         }
 
         [Test]
+        public async Task render_simple_template_with_no_model()
+        {
+            var cts = new CancellationTokenSource();
+            var view = new ViewResult(_request, "TestNull", null);
+
+            var response = await view.ExecuteAsync(cts.Token);
+            var output = await response.Content.ReadAsStringAsync();
+
+            Assert.AreEqual("Hello foo! Welcome to Razor!", output);
+        }
+
+        [Test]
         public async Task render_template_with_embedded_layout()
         {
             var cts = new CancellationTokenSource();
