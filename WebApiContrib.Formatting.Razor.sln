@@ -1,6 +1,8 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2012
+# Visual Studio 2013
+VisualStudioVersion = 12.0.31101.0
+MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApiContrib.Formatting.Razor", "src\WebApiContrib.Formatting.Razor\WebApiContrib.Formatting.Razor.csproj", "{8C15B0D3-9108-4EA3-AE19-3C9571266C47}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MvcWebApiSiteTest", "samples\MvcWebApiSiteTest\MvcWebApiSiteTest.csproj", "{5D90E626-1C40-4B23-887A-DC2527D696CB}"
@@ -8,6 +10,12 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApiContrib.Razor.Tests", "test\WebApiContrib.Formatting.Razor.Tests\WebApiContrib.Razor.Tests.csproj", "{960EDBC5-0C46-4CD7-B0B6-B4D5F30B9092}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApiContrib.Formatting.Razor.Templating", "src\WebApiContrib.Formatting.Razor.Templating\WebApiContrib.Formatting.Razor.Templating.csproj", "{36287DD3-6930-4C13-93B7-06FE600278F9}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "fsharp", "fsharp", "{1258C816-9FA3-43F5-85C7-AA2BE6E842DE}"
+	ProjectSection(SolutionItems) = preProject
+		fsharp\HtmlTemplateBase.fs = fsharp\HtmlTemplateBase.fs
+		fsharp\WebApiContrib.Formatting.Razor.fs = fsharp\WebApiContrib.Formatting.Razor.fs
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -1,7 +1,7 @@
 ﻿namespace WebApiContrib.Formatting.Razor
 
 #if INTERACTIVE
-#I "../../packages"
+#I "../packages"
 #r "System.Net.Http"
 #r "Microsoft.AspNet.WebApi.Client.5.0.0/lib/net45/System.Net.Http.Formatting.dll"
 #r "Microsoft.AspNet.WebApi.Core.5.0.0/lib/net45/System.Web.Http.dll"
