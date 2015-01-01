@@ -236,7 +236,7 @@
     <Content Include="Views\Customer.cshtml" />
     <Content Include="Views\CustomerViaAttrib.cshtml" />
     <Content Include="Views\CustomerViaConfig.cshtml" />
-    <Content Include="Views\CustomerViaView.cshtml" />
+    <Content Include="Views\CustomerViaViewResult.cshtml" />
     <Content Include="Views\Shared\HttpError.cshtml" />
     <Content Include="Views\Index.cshtml" />
   </ItemGroup>
