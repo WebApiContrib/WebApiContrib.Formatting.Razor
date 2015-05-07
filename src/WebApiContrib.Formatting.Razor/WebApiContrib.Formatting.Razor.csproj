@@ -63,12 +63,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="EmbeddedResolver.cs" />
-    <Compile Include="RazorViewFormatter.cs" />
-    <Compile Include="TemplateResolver.cs" />
-    <Compile Include="RazorViewLocator.cs" />
+    <Compile Include="WebApiContrib.Formatting.Razor.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="RazorViewParser.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
